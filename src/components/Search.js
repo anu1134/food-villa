@@ -17,7 +17,10 @@ const SearchComponent = (props) => {
     <div className="search">
       <input
         type="text"
-        onChange={(e) => (searchText = e.target.value)}
+        onChange={(e) => {
+          searchText = e.target.value;
+          filterRestaurants(searchText);
+        }}
         className="search-text"
       ></input>
       <button onClick={(e) => filterRestaurants(searchText)}>Search</button>

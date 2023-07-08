@@ -1,6 +1,8 @@
 import { RESTAURANT_IMG_URL } from "../common/restaurant_img_url";
 
-const RestaurantCard = (props) => {
+const RestaurantCard = ({ res_details }) => {
+  //console.log("props", props);
+
   const {
     name,
     cuisines,
@@ -8,7 +10,7 @@ const RestaurantCard = (props) => {
     deliveryTime,
     costForTwoString,
     cloudinaryImageId,
-  } = props.res_details;
+  } = res_details;
 
   return (
     <div className="restaurant-card">

@@ -1,4 +1,16 @@
+import { useState } from "react";
+
 const HeaderComponent = () => {
+  const [buttonText, setButtonText] = useState("Login");
+
+  function updateLoginLogoutText() {
+    if (buttonText === "Login") {
+      setButtonText("Logout");
+    } else {
+      setButtonText("Login");
+    }
+  }
+
   return (
     <nav className="nav-bar">
       <img
@@ -10,6 +22,9 @@ const HeaderComponent = () => {
         <li>About</li>
         <li>Contact</li>
       </ul>
+      <button className="login-button" onClick={updateLoginLogoutText}>
+        {buttonText}
+      </button>
     </nav>
   );
 };
