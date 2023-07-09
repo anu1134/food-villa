@@ -113,3 +113,10 @@
   padding: 20px;
   margin: 30px;
 }
+
+.shimmer-card {
+  height: 500px;
+  width: 300px;
+  margin: 10px;
+  background-color: lightgray;
+}

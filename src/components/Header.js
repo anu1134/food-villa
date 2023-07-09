@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
   const [buttonText, setButtonText] = useState("Login");
@@ -18,9 +19,15 @@ const HeaderComponent = () => {
         alt="restaurant-logo"
       ></img>
       <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
       </ul>
       <button className="login-button" onClick={updateLoginLogoutText}>
         {buttonText}

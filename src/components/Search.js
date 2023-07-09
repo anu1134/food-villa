@@ -1,11 +1,11 @@
-import { restaurants } from "../common/restaurants";
+//import { restaurants } from "../common/restaurants";
 
 let searchText = "";
 
 const SearchComponent = (props) => {
   function filterRestaurants(searchText) {
-    let filteredRestaurants = restaurants.filter((restaurant) =>
-      restaurant.name.toLowerCase().includes(searchText.toLowerCase())
+    let filteredRestaurants = props.restaurants.filter((restaurant) =>
+      restaurant.data.data.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
     props.filteredRestaurants(filteredRestaurants);

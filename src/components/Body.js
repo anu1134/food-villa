@@ -1,15 +1,16 @@
 import SearchComponent from "./Search";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Shimmer from "./Shimmer";
 
 // Hooks --- JS Function "use"
 
 const BodyComponent = () => {
-  //let filteredRestaurantsArray = [];
   const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]);
 
   function filteredRestaurants(restaurants) {
-    // filteredRestaurantsArray.push(restaurants);
     setFilteredRestaurants(restaurants);
   }
 
@@ -23,7 +24,6 @@ const BodyComponent = () => {
 
   useEffect(() => {
     console.log("useEffect called");
-
     fetchData();
   }, []);
 
@@ -41,30 +41,44 @@ const BodyComponent = () => {
     console.log("restaurant cards", restaurantCards);
 
     setFilteredRestaurants(restaurantCards);
+    setAllRestaurants(restaurantCards);
 
     //console.log("response", response);
   }
 
   console.log("Body rendered");
 
+  // conditional rendering
   return (
     <>
       <div className="filter-search-bar">
-        <SearchComponent filteredRestaurants={filteredRestaurants} />
+        <SearchComponent
+          restaurants={allRestaurants}
+          filteredRestaurants={filteredRestaurants}
+        />
         <button className="top-rated" onClick={filterTopRatedRestaurants}>
           Top Rated Restaurants
         </button>
       </div>
 
-      <div className="res-container">
-        {filteredRestaurantsArray.map((restaurant) => (
-          <RestaurantCard
-            // Optional Chaining
-            key={restaurant?.data?.data?.id}
-            res_details={restaurant?.data?.data}
-          />
-        ))}
-      </div>
+      {filteredRestaurantsArray.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className="res-container">
+          {filteredRestaurantsArray.map((restaurant) => (
+            <Link
+              key={restaurant?.data?.data?.id}
+              to={"/restaurant/" + restaurant?.data?.data?.id}
+            >
+              <RestaurantCard
+                // Optional Chaining
+                key={restaurant?.data?.data?.id}
+                res_details={restaurant?.data?.data}
+              />
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   );
 };

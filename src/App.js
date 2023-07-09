@@ -1,8 +1,8 @@
 import "./App.css";
 import React from "react";
 import HeaderComponent from "./components/Header";
-import BodyComponent from "./components/Body";
 import FooterComponent from "./components/Footer";
+import { Outlet } from "react-router-dom";
 
 /**
  *  Header
@@ -35,7 +35,7 @@ function App() {
   return (
     <>
       <HeaderComponent />
-      <BodyComponent />
+      <Outlet />
       <FooterComponent />
     </>
   );
