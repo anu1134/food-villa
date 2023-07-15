@@ -9,6 +9,8 @@ import Error from "./components/Error";
 import Contact from "./components/Contact";
 import BodyComponent from "./components/Body";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Profile from "./components/Profile";
+import ProfileChild from "./components/ProfileChild";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -25,6 +27,18 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+            children: [
+              {
+                path: "profileChild",
+                element: <ProfileChild />,
+              },
+            ],
+          },
+        ],
       },
       {
         path: "/contact",

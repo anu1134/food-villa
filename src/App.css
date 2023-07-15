@@ -41,6 +41,10 @@
   display: flex;
   justify-content: space-around;
   border: 1px solid black;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
 }
 
 .nav-bar > img {
@@ -71,6 +75,7 @@
   height: 500px;
   width: 300px;
   margin-left: 10px;
+  border: 1px solid transparent;
 }
 
 .restaurant-card:hover {
@@ -99,6 +104,10 @@
   align-items: center;
   justify-content: space-around;
   border: 1px solid black;
+  position: sticky;
+  bottom: 0;
+  z-index: 999;
+  background-color: white;
 }
 
 .filter-search-bar {

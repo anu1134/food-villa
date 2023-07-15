@@ -1,14 +1,32 @@
 import SearchComponent from "./Search";
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useOnline from "../common/useOnline";
+import useFetch from "../common/useFetch";
 
 // Hooks --- JS Function "use"
 
 const BodyComponent = () => {
-  const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
+  const isOnline = useOnline();
+  const url =
+    "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&lat=18.6565914&lng=73.77277640000001&carousel=true&third_party_vendor=1";
+  const { response, isPending, error } = useFetch(url);
   const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
+
+  useEffect(() => {
+    if (!isPending) {
+      const restaurantCards = response?.data?.cards?.filter(
+        (card) => card.cardType === "restaurant"
+      );
+      if (restaurantCards !== undefined) {
+        setAllRestaurants(restaurantCards);
+        setFilteredRestaurants(restaurantCards);
+      }
+    }
+  }, [isPending, response]);
 
   function filteredRestaurants(restaurants) {
     setFilteredRestaurants(restaurants);
@@ -22,31 +40,9 @@ const BodyComponent = () => {
     setFilteredRestaurants(topRatedRestaurants);
   }
 
-  useEffect(() => {
-    console.log("useEffect called");
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    const result = await fetch(
-      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&lat=18.6565914&lng=73.77277640000001&carousel=true&third_party_vendor=1"
-    );
-
-    const response = await result.json();
-
-    const restaurantCards = response.data.cards.filter(
-      (card) => card.cardType === "restaurant"
-    );
-
-    console.log("restaurant cards", restaurantCards);
-
-    setFilteredRestaurants(restaurantCards);
-    setAllRestaurants(restaurantCards);
-
-    //console.log("response", response);
+  if (!isOnline) {
+    return <h1>Please check your Internet Connection</h1>;
   }
-
-  console.log("Body rendered");
 
   // conditional rendering
   return (
@@ -61,7 +57,9 @@ const BodyComponent = () => {
         </button>
       </div>
 
-      {filteredRestaurantsArray.length === 0 ? (
+      {error && <div>{error}</div>}
+
+      {isPending ? (
         <Shimmer />
       ) : (
         <div className="res-container">

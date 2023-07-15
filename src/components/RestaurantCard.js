@@ -1,8 +1,6 @@
 import { RESTAURANT_IMG_URL } from "../common/restaurant_img_url";
 
 const RestaurantCard = ({ res_details }) => {
-  //console.log("props", props);
-
   const {
     name,
     cuisines,

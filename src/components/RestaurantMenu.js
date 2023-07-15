@@ -19,6 +19,8 @@ const RestaurantMenu = () => {
         restaurantMenu?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR
           ?.cards[1]?.card?.card?.itemCards;
 
+      console.log("menu", menu);
+
       if (menu === undefined) {
         menu =
           restaurantMenu?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR
@@ -39,7 +41,10 @@ const RestaurantMenu = () => {
   ) : (
     <>
       {restaurantMenuItems.map((menu) => (
-        <RestaurantMenuItemCard menuDetails={menu}></RestaurantMenuItemCard>
+        <RestaurantMenuItemCard
+          key={menu.card.info.id}
+          menuDetails={menu}
+        ></RestaurantMenuItemCard>
       ))}
     </>
   );
