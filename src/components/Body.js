@@ -10,20 +10,16 @@ import useFetch from "../common/useFetch";
 
 const BodyComponent = () => {
   const isOnline = useOnline();
-  const url =
-    "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&lat=18.6565914&lng=73.77277640000001&carousel=true&third_party_vendor=1";
+  const url = "https://restaurants-api-v940.onrender.com/api/restaurants/";
   const { response, isPending, error } = useFetch(url);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
 
   useEffect(() => {
     if (!isPending) {
-      const restaurantCards = response?.data?.cards?.filter(
-        (card) => card.cardType === "restaurant"
-      );
-      if (restaurantCards !== undefined) {
-        setAllRestaurants(restaurantCards);
-        setFilteredRestaurants(restaurantCards);
+      if (response) {
+        setAllRestaurants(response);
+        setFilteredRestaurants(response);
       }
     }
   }, [isPending, response]);
@@ -65,13 +61,14 @@ const BodyComponent = () => {
         <div className="res-container">
           {filteredRestaurantsArray.map((restaurant) => (
             <Link
-              key={restaurant?.data?.data?.id}
-              to={"/restaurant/" + restaurant?.data?.data?.id}
+              key={restaurant._id}
+              to={"/restaurant/" + restaurant._id}
+              state={restaurant}
             >
               <RestaurantCard
                 // Optional Chaining
-                key={restaurant?.data?.data?.id}
-                res_details={restaurant?.data?.data}
+                key={restaurant._id}
+                res_details={restaurant}
               />
             </Link>
           ))}
@@ -82,3 +79,11 @@ const BodyComponent = () => {
 };
 
 export default BodyComponent;
+
+// Lazy loading
+// code splitting
+// dynamic import
+// chunking
+
+// React.Memo ---- Memoization Technique
+// useCallback

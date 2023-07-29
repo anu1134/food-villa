@@ -10,9 +10,11 @@ export const useFetch = (url) => {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        setIsPending(false);
+        console.log("response", json);
         setResponse(json);
+        setIsPending(false);
       } catch (error) {
+        console.log("error", error);
         setError(`${error} Could not Fetch Data `);
         setIsPending(false);
       }
@@ -23,3 +25,8 @@ export const useFetch = (url) => {
 };
 
 export default useFetch;
+
+// lazy loading with infinite scrolling
+
+// useRef
+// usecallback

@@ -6,7 +6,7 @@ const RestaurantCard = ({ res_details }) => {
     cuisines,
     avgRating,
     deliveryTime,
-    costForTwoString,
+    costForTwo,
     cloudinaryImageId,
   } = res_details;
 
@@ -22,7 +22,7 @@ const RestaurantCard = ({ res_details }) => {
       <div className="res-info">
         <h4>{avgRating}</h4>
         <h4>{deliveryTime}</h4>
-        <h4> {costForTwoString}</h4>
+        <h4> {costForTwo}</h4>
       </div>
     </div>
   );

@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -63,6 +52,35 @@
   margin: 5px;
 }
 
+.nav-bar a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-bar a:hover,
+.nav-bar a:focus {
+  color: #fd5f00;
+}
+
+@media (max-width: 640px) {
+  .nav-bar img {
+    align-self: center;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-bar ul {
+    flex-direction: column;
+  }
+
+  .nav li {
+    margin: 0.8em 0;
+  }
+}
+
 .search {
   margin: 10px;
 }
@@ -72,10 +90,15 @@
 }
 
 .restaurant-card {
-  height: 500px;
+  height: 450px;
   width: 300px;
   margin-left: 10px;
   border: 1px solid transparent;
+}
+
+.res-container a {
+  text-decoration: none;
+  color: black;
 }
 
 .restaurant-card:hover {
@@ -119,7 +142,6 @@
 }
 
 .login-button {
-  padding: 20px;
   margin: 30px;
 }
 
@@ -128,4 +150,74 @@
   width: 300px;
   margin: 10px;
   background-color: lightgray;
+}
+
+.review-button {
+  margin: 10px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid gray;
+}
+
+.menu-item > img {
+  width: 118px;
+  height: 96px;
+  padding: 10px;
+}
+
+.item-details {
+  width: 500px;
+}
+
+.restaurant-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.restaurant-header-details {
+  width: 500px;
+}
+
+.restaurant-menu > h3 {
+  margin: 10px;
+}
+
+.rating {
+  width: 10%;
+  padding: 5px;
+  border: 1px solid lightgray;
+  margin: 10px;
+  border-radius: 10px;
+  color: green;
+}
+
+.res-header-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  border-bottom: 1px dotted gray;
+}
+
+.rating a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.res-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-submit-button {
+  margin: 20px;
 }

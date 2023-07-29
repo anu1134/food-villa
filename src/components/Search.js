@@ -4,8 +4,11 @@ let searchText = "";
 
 const SearchComponent = (props) => {
   function filterRestaurants(searchText) {
-    let filteredRestaurants = props.restaurants.filter((restaurant) =>
-      restaurant.data.data.name.toLowerCase().includes(searchText.toLowerCase())
+    console.log("props", props);
+    let filteredRestaurants = props.restaurants.filter(
+      (restaurant) =>
+        restaurant.name.toLowerCase().includes(searchText.toLowerCase())
+      //restaurant.data.data.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
     props.filteredRestaurants(filteredRestaurants);

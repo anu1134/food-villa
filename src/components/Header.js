@@ -28,6 +28,9 @@ const HeaderComponent = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
+        <li>
+          <Link to="/instamart">Instamart</Link>
+        </li>
       </ul>
       <button className="login-button" onClick={updateLoginLogoutText}>
         {buttonText}
