@@ -18,25 +18,16 @@ const RestaurantMenu = () => {
 
   useEffect(() => {
     async function fetchMenu() {
-      const response = await fetch(`${RESTAURANT_MENU_URL}${resId}`);
+      const response = await fetch(
+        "http://localhost:8000/api/restaurantMenu/64bcc09a64e55f2a99ffcb18"
+      );
       const restaurantMenu = await response.json();
 
+      setRestaurantMenu(restaurantMenu);
+
       console.log("restaurant menu", restaurantMenu);
-
-      let menu =
-        restaurantMenu?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR
-          ?.cards[1]?.card?.card?.itemCards;
-
-      console.log("menu", menu);
-
-      if (menu === undefined) {
-        menu =
-          restaurantMenu?.data?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR
-            ?.cards[2]?.card?.card?.itemCards;
-      }
-
-      setRestaurantMenu(menu);
     }
+
     fetchMenu();
   }, [resId]);
 
@@ -66,7 +57,7 @@ const RestaurantMenu = () => {
           <h3>Recommended({restaurantMenuItems.length})</h3>
           {restaurantMenuItems.map((menu) => (
             <RestaurantMenuItemCard
-              key={menu.card.info.id}
+              key={menu.id}
               menuDetails={menu}
             ></RestaurantMenuItemCard>
           ))}
